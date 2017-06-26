@@ -7,7 +7,7 @@
 
 
 using namespace cv;
-
+LPCSTR siren ="C:\\Users\\jju75\\Desktop\\warning.wav";
 int histSize = 16;
 float range[] = {0,255};
 const float *ranges[] = {range};
@@ -135,7 +135,7 @@ int main(int argc, char *argv[]){
 		current_t = clock();
 			if((double)(current_t -for_blink_start_t)/CLOCKS_PER_SEC >60.0){ // checking the blink number during 60seconds
 				if(blink_time_per_m > BLINK_TIMES ){
-					sndPlaySoundA("C:\\Users\\jju75\\Desktop\\warning.wav",SND_ASYNC|SND_NOSTOP);//|SND_NODEFAULT);
+					sndPlaySoundA("./warning.wav",SND_ASYNC|SND_NOSTOP);//|SND_NODEFAULT);
 					printf("Warning!!!! - Too many blink!!\n");
 				}
 				for_blink_start_t = clock();
@@ -144,7 +144,7 @@ int main(int argc, char *argv[]){
 			
 			if((double)(current_t - start_t)/CLOCKS_PER_SEC > CLOSE_TIME){ // checking eyes close time
 				if(start_flag == true){
-					sndPlaySoundA("C:\\Users\\jju75\\Desktop\\warning.wav",SND_ASYNC|SND_NOSTOP);//|SND_NODEFAULT);
+					sndPlaySoundA("./warning.wav",SND_ASYNC|SND_NOSTOP);//|SND_NODEFAULT);
 					printf("Warning!!!! - Open your eyes!!\n");
 				}
 				start_flag = true;
@@ -196,7 +196,7 @@ int main(int argc, char *argv[]){
 			}
 
 			if(m_flag == 2 && (double)(close_mouth_t - open_mouth_t)/CLOCKS_PER_SEC > 5.6){ // checking yawn time
-				sndPlaySoundA("C:\\Users\\jju75\\Desktop\\warning.wav",SND_ASYNC|SND_NOSTOP);
+				sndPlaySoundA("./warning.wav", SND_ASYNC|SND_NOSTOP);
 				printf("Warning!!!! - Yawn!!\n");
 				m_flag = 0;
 			}
@@ -217,7 +217,7 @@ int main(int argc, char *argv[]){
 
 				if(L_tmp.pupil.x == 0 && L_tmp.pupil.y == 0 
 					|| R_tmp.pupil.x == 0 && R_tmp.pupil.y == 0 ){
-						sndPlaySoundA("C:\\Users\\jju75\\Desktop\\warning.wav",SND_ASYNC|SND_NOSTOP);//|SND_NODEFAULT);
+						sndPlaySoundA("./warning.wav",SND_ASYNC|SND_NOSTOP);//|SND_NODEFAULT);
 				}
 			
 				cvCircle(frame, L_tmp.pupil, 2, CV_RGB(255,0,0), 3, 8);
